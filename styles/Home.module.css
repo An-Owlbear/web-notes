@@ -1,0 +1,85 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  min-height: 100vh;
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 3rem;
+}
+
+.createBtn {
+  color: var(--background);
+  background-color: var(--accent-color);
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  transition: background-color ease 0.2s;
+}
+
+.createBtn:hover {
+  background-color: var(--accent-color2);
+}
+
+.createBtn .mobileText {
+  display: none;
+}
+
+.noteList {
+  border: 2px solid var(--border2);
+  border-radius: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.noteList > * {
+  border-bottom: 1px solid var(--border2);
+  transition: background-color ease 0.2s;
+}
+
+.noteList a {
+  display: block;
+  padding: 1rem;
+}
+
+.noteList > :hover {
+  background-color: var(--border);
+}
+
+.noteList > :last-child {
+  border: none;
+}
+
+@media (max-width: 600px) {
+  .main {
+    max-width: initial;
+    width: 100%;
+  }
+
+  .createBtn {
+    padding: 1rem;
+  }
+
+  .createBtn .mobileText {
+    display: block;
+    height: 24px;
+  }
+
+  .createBtn .desktopText {
+    display: none;
+  }
+}
