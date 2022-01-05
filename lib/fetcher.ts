@@ -1,4 +1,2 @@
-import { Note } from './apiModels';
-
-export const getNotes = (input: RequestInfo, init?: RequestInit | undefined): Promise<Note[]> =>
+export const fetcher = <T>(input: RequestInfo, init?: RequestInit | undefined): Promise<T> =>
   fetch(input, init).then(res => res.json())
