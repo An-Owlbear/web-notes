@@ -1,13 +1,13 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { Note } from '../lib/apiModels';
-import { getNotes } from '../lib/fetcher';
+import { fetcher } from '../lib/fetcher';
 import styles from '../styles/Home.module.css'
 import useSWR from 'swr';
 import Link from 'next/link';
 
 const Home: NextPage = () => {
-  const { data } = useSWR<Note[]>('/api/getNotes', getNotes);
+  const { data } = useSWR<Note[]>('/api/getNotes', fetcher);
 
   return (
     <div className={styles.container}>
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
         <ul className={styles.noteList}>
           {data?.map(x => (
             <li key={x.title}>
-              <Link href="javascript:void(0)">{x.title}</Link>
+              <Link href="">{x.title}</Link>
             </li>
           ))}
         </ul>

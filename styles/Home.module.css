@@ -25,8 +25,8 @@
 .createBtn {
   color: var(--background);
   background-color: var(--accent-color);
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
   border-radius: 10px;
   transition: background-color ease 0.2s;
 }
