@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head'
 import { Note } from '../lib/apiModels';
 import { fetcher } from '../lib/fetcher';
@@ -7,7 +8,8 @@ import useSWR from 'swr';
 import Link from 'next/link';
 
 const Home: NextPage = () => {
-  const { data } = useSWR<Note[]>('/api/getNotes', fetcher);
+  const { data } = useSWR<Note[]>('/api/notes', fetcher);
+  const { data: session }= useSession();
 
   return (
     <div className={styles.container}>
@@ -18,6 +20,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        { session ? <button onClick={() => signOut()}>Sign out </button> : <button onClick={() => signIn()}>Sign in</button> }
         <div className={styles.header}>
           <h1 className={styles.title}>Notes</h1>
           <button className={styles.createBtn}>
