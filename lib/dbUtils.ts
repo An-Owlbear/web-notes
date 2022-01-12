@@ -1,9 +1,5 @@
 import { createPool, sql } from 'slonik';
 
-export interface User {
-  id: string;
-}
-
 export interface Note {
   id: string;
   title: string;
