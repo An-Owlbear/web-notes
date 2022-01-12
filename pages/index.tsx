@@ -1,14 +1,14 @@
 import type { NextPage } from 'next'
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head'
-import { Note } from '../lib/apiModels';
+import { ApiNote } from '../lib/apiModels';
 import { fetcher } from '../lib/fetcher';
 import styles from '../styles/Home.module.css'
 import useSWR from 'swr';
 import Link from 'next/link';
 
 const Home: NextPage = () => {
-  const { data } = useSWR<Note[]>('/api/notes', fetcher);
+  const { data } = useSWR<ApiNote[]>('/api/notes', fetcher);
   const { data: session, status } = useSession({ required: true });
 
   if (status === 'loading') return null;

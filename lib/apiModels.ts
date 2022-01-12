@@ -1,4 +1,4 @@
-export interface Note {
+export interface ApiNote {
   id: string;
   title: string;
   content: string;
