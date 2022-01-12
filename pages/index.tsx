@@ -9,8 +9,9 @@ import Link from 'next/link';
 
 const Home: NextPage = () => {
   const { data } = useSWR<Note[]>('/api/notes', fetcher);
-  const { data: session }= useSession();
+  const { data: session, status } = useSession({ required: true });
 
+  if (status === 'loading') return null;
   return (
     <div className={styles.container}>
       <Head>
@@ -40,4 +41,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Home;
