@@ -1,5 +1,0 @@
-### Get notes
-GET {{url}}/api/notes
-
-### Get specific note
-GET {{url}}/api/notes/1cb89cbb-e504-46f0-bec3-b91701dc11de
