@@ -1,0 +1,24 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+
+.title, .content {
+  width: 100%;
+  border: none;
+  resize: none;
+  outline: none;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.content {
+  font-size: 1.5rem;
+}
