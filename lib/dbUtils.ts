@@ -1,4 +1,5 @@
 import { createPool, sql } from 'slonik';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface Note {
   id: string;
@@ -14,3 +15,9 @@ export const getNote = async (id: string) =>
 
 export const getNotes = async (userId: string) =>
   await pool.many<Note>(sql`SELECT * FROM notes WHERE user_id = ${userId}`);
+
+export const createNote = async (userId: string) => {
+  const id = uuidv4();
+  await pool.query(sql`INSERT INTO notes VALUES(${id}, 'Untitled note', '', ${userId})`);
+  return await pool.one<Note>(sql`SELECT * FROM notes WHERE id = ${id}`);
+}

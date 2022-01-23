@@ -4,13 +4,13 @@ import { ApiError, ApiNote } from '../../../lib/apiModels';
 import { getNote } from '../../../lib/dbUtils';
 import { Responses } from '../../../lib/Responses';
 
-interface Request extends NextApiRequest {
+interface GetRequest extends NextApiRequest {
   query: {
     noteId: string
   }
 }
 
-export default async function handler(req: Request, res: NextApiResponse<ApiNote | ApiError>) {
+export default async function handler(req: GetRequest, res: NextApiResponse<ApiNote | ApiError>) {
   const session = await getSession({ req })
   if (!session || !session.user) {
     return res.status(401).send({ error: Responses.Unauthorized});

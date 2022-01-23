@@ -7,3 +7,7 @@ export interface ApiNote {
 export interface ApiError {
   error: string;
 }
+
+export interface NoteCreateResponse {
+  id: string;
+}
