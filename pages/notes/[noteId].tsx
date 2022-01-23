@@ -22,6 +22,11 @@ const Note: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <div className={styles.buttonContainer}>
+          <button onClick={() => router.back()}>Back</button>
+          <button>Save</button>
+        </div>
+
         <input className={styles.title} type="text" name="title" value={note.title} />
         <textarea className={styles.content} name="content" value={note.content} />
       </main>

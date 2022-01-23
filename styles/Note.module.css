@@ -7,11 +7,29 @@
   margin: 2rem auto;
 }
 
+.buttonContainer {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonContainer button {
+  padding: 1rem 2rem;
+  background-color: var(--accent-color);
+  color: var(--background);
+  font-size: 1.25rem;
+  border-radius: 10px;
+}
+
 .title, .content {
   width: 100%;
   border: none;
   resize: none;
   outline: none;
+  font-family: inherit;
+  background-color: var(--border);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
 }
 
 .title {
