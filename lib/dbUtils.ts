@@ -21,3 +21,6 @@ export const createNote = async (userId: string) => {
   await pool.query(sql`INSERT INTO notes VALUES(${id}, 'Untitled note', '', ${userId})`);
   return await pool.one<Note>(sql`SELECT * FROM notes WHERE id = ${id}`);
 }
+
+export const updateNote = async (note: Note) =>
+  await pool.query(sql`UPDATE notes SET title = ${note.title}, content = ${note.content} WHERE id = ${note.id}`);
