@@ -1,5 +1,4 @@
 import { NextPage } from 'next';
-import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useState } from 'react';
@@ -11,7 +10,6 @@ import styles from '../../styles/Note.module.css'
 const Note: NextPage = () => {
   const router = useRouter();
   const { noteId } = router.query;
-  const { data: session, status } = useSession({ required: true });
 
   // Fetches data, and updates state unless it has been modified by the user
   const { data: note } = useSWR<ApiNote>(noteId ? `/api/notes/${noteId}` : null, fetcher, {
@@ -41,7 +39,7 @@ const Note: NextPage = () => {
     setValues({ ...values, changed: false });
   }
 
-  if (status === 'loading' || !note) return null;
+  if (!note) return null;
   return (
     <div className={styles.container}>
       <Head>

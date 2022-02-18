@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { ApiNote } from '../lib/apiModels';
@@ -10,7 +9,6 @@ import Link from 'next/link';
 
 const Home: NextPage = () => {
   const { data } = useSWR<ApiNote[]>('/api/notes', fetcher);
-  const { data: session, status } = useSession({ required: true });
   const router = useRouter();
 
   const createNote = () => {
@@ -19,8 +17,6 @@ const Home: NextPage = () => {
       .then((data) => router.push(`/notes/${data.id}`))
       .catch(error => console.log(error));
   }
-
-  if (status === 'loading') return null;
   return (
     <div className={styles.container}>
       <Head>
@@ -30,7 +26,6 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        { session ? <button onClick={() => signOut()}>Sign out </button> : <button onClick={() => signIn()}>Sign in</button> }
         <div className={styles.header}>
           <h1 className={styles.title}>Notes</h1>
           <button className={styles.createBtn} onClick={createNote}>
