@@ -1,3 +1,4 @@
+import { serialize } from 'cookie';
 import { NextApiResponse } from 'next';
 import { generators, Issuer } from 'openid-client';
 import { SessionRequest } from './ironSession';
@@ -39,11 +40,18 @@ export const checkAuth = async (req: SessionRequest, res: NextApiResponse) => {
 
 // Completes the login process and sets session
 export const callback = async (req: SessionRequest, res: NextApiResponse) => {
+  // Retrieves token set from callback
   const client = await createClient();
   const params = client.callbackParams(req);
   const tokenSet = await client.callback(`${process.env.APP_URL}/api/auth/callback`, params, { code_verifier: req.session.codeVerifier });
+
+  // Sets non http-only cookie for checking if signed in client side
   const userInfo = await client.userinfo(tokenSet.access_token!);
-  console.log(userInfo);
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + 14);
+  res.setHeader('Set-Cookie', serialize('sessionInfo', userInfo.sub, { expires: expiryDate, path: '/' }))
+
+  // Clears and sets session
   req.session.destroy();
   req.session.userId = userInfo.sub;
   await req.session.save();
