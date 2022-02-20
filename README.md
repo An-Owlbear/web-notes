@@ -1,16 +1,17 @@
 # web-notes
-web-notes is a simple web based notes application
+web-notes is a simple web based notes application.
 
-## Dependencies
-To use web-notes you will need the following programs
-- Postgresql
+## Requirements
+- Postgresql database
 - Any openid provider
 - Node.js
 
 ## Installation
-First download the code<br>
+First download the code.
 
-```git clone https://github.com/An-Owlbear/web-notes```
+```
+git clone https://github.com/An-Owlbear/web-notes
+```
 
 web-notes uses environment variables for database connection details and other values.
 These values can also be provided using a `.env.local` file, in the format shown below.
@@ -29,10 +30,15 @@ APP_URL=http://localhost:3000
 APP_SECRET=ATxGW0kzTag4MfIf2nGOXZQnvkoo+eX0L0g4NYhCjXY=
 ```
 
-Next build the application by running the command
+Next build the application by running the commands.
 
-```npm run build```
+```
+npm install
+npm run build
+```
 
-The application can be run using the command
+The application can be run using the command.
 
-``npm run start``
+```
+npm run start
+```
