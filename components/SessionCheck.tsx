@@ -11,7 +11,7 @@ const SessionCheck = (props: SessionCheckProps) => {
   useEffect(() => {
     if (Cookies.get('sessionInfo')) setSession(Cookies.get('sessionInfo'));
     else window.location.href = "/api/login";
-  })
+  }, []);
 
   if (!session) return <></>
   return props.children;
