@@ -1,34 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# web-notes
+web-notes is a simple web based notes application
 
-## Getting Started
+## Dependencies
+To use web-notes you will need the following programs
+- Postgresql
+- Any openid provider
+- Node.js
 
-First, run the development server:
+## Installation
+First download the code<br>
 
-```bash
-npm run dev
-# or
-yarn dev
+```git clone https://github.com/An-Owlbear/web-notes```
+
+web-notes uses environment variables for database connection details and other values.
+These values can also be provided using a `.env.local` file, in the format shown below.
+
+```
+DB_URL=localhost
+DB_USER=web-notes
+DB_PASSWORD=web-notes
+DB_PORT=5432
+DB_NAME=web-notes
+DB_DATABASE=web-notes
+ISSUER_URL=http://localhost:8080/auth/realms/testing
+CLIENT_ID=web-notes
+CLIENT_SECRET=18EUHXBMBLhqbjKmmCV6kfKQuPAeDJD7
+APP_URL=http://localhost:3000
+APP_SECRET=ATxGW0kzTag4MfIf2nGOXZQnvkoo+eX0L0g4NYhCjXY=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Next build the application by running the command
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```npm run build```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/notes.ts`.
+The application can be run using the command
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+``npm run start``
