@@ -18,7 +18,7 @@ async function getHandler(req: SessionRequest, res: NextApiResponse<ApiNote[] | 
   }
 
   const notes = await getNotes(req.session.userId);
-  const responseNotes = notes.map(note => ({ id: note.id, title: note.title, content: note.content }))
+  const responseNotes = notes.map(note => ({ id: note.id, title: note.title, content: note.content, dateCreated: note.date_created }))
   res.json(responseNotes);
 }
 

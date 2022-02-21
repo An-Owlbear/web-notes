@@ -30,7 +30,7 @@ async function handler(req: SessionRequest, res: NextApiResponse<ApiNote | ApiEr
 
 // Returns note information
 async function getHandler(req: SessionRequest, res: NextApiResponse<ApiNote | ApiError>, note: Note) {
-  const responseNote = { id: note.id, title: note.title, content: note.content };
+  const responseNote = { id: note.id, title: note.title, content: note.content, dateCreated: note.date_created };
   res.json(responseNote);
 }
 
@@ -42,7 +42,8 @@ async function patchHandler(req: PatchRequest, res: NextApiResponse, note: Note)
     id: note.id,
     title: req.body.title ?? note.title,
     content: req.body.content ?? note.content,
-    user_id: note.user_id
+    user_id: note.user_id,
+    date_created: note.date_created
   }
 
   await updateNote(updateNoteValues);
