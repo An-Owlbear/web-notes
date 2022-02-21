@@ -35,7 +35,7 @@ const Home: NextPage = () => {
         </div>
         <ul className={styles.noteList}>
           {data?.map(x => (
-            <li key={x.title}>
+            <li key={x.id}>
               <Link href={`/notes/${x.id}`}>{x.title}</Link>
             </li>
           ))}
