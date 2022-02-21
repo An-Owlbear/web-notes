@@ -5,6 +5,9 @@
 .main {
   max-width: 1000px;
   margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 4rem);
 }
 
 .buttonContainer {
@@ -39,4 +42,5 @@
 
 .content {
   font-size: 1.5rem;
+  flex-grow: 1;
 }
