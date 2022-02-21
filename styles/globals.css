@@ -2,8 +2,9 @@
   --accent-color: hsl(212, 100%, 48%);
   --accent-color2: hsl(212, 100%, 42%);
   --background: hsl(0, 0%, 98%);
-  --border: hsl(0, 0%, 92%);
-  --border2: hsl(0, 0%, 86%);
+  --grey1: hsl(0, 0%, 95%);
+  --grey2: hsl(0, 0%, 92%);
+  --grey4: hsl(0, 0%, 86%);
 }
 
 html,

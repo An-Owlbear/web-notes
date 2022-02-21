@@ -36,7 +36,14 @@ const Home: NextPage = () => {
         <ul className={styles.noteList}>
           {data?.map(x => (
             <li key={x.id}>
-              <Link href={`/notes/${x.id}`}>{x.title}</Link>
+              <Link href={`/notes/${x.id}`}>
+                <a>
+                  {x.title}
+                  <button>
+                    <img src="/delete_black_48dp.svg" alt="Delete note" className={styles.deleteButton} />
+                  </button>
+                </a>
+              </Link>
             </li>
           ))}
         </ul>

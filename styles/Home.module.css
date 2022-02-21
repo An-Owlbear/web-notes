@@ -39,24 +39,43 @@
 }
 
 .noteList {
-  border: 2px solid var(--border2);
+  border: 2px solid var(--grey4);
   border-radius: 10px;
   width: 100%;
   overflow: hidden;
 }
 
-.noteList > * {
-  border-bottom: 1px solid var(--border2);
+.noteList > li {
+  border-bottom: 1px solid var(--grey4);
   transition: background-color ease 0.2s;
 }
 
-.noteList a {
-  display: block;
-  padding: 1rem;
+.noteList > li:hover {
+  background-color: var(--grey1);
 }
 
-.noteList > :hover {
-  background-color: var(--border);
+.noteList a {
+  padding-left: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.noteList button {
+  margin: 0.5rem 1rem;
+  padding: 0.5rem;
+  background: none;
+  border: 2px solid var(--grey4);
+  border-radius: 5px;
+}
+
+.noteList button:hover {
+  background-color: var(--grey4);
+}
+
+.noteList img {
+  display: block;
+  height: 30px;
 }
 
 .noteList > :last-child {

@@ -30,7 +30,7 @@
   resize: none;
   outline: none;
   font-family: inherit;
-  background-color: var(--border);
+  background-color: var(--grey2);
   padding: 1rem 1.5rem;
   border-radius: 10px;
 }
