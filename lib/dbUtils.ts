@@ -15,7 +15,7 @@ export const getNote = async (id: string) =>
   await pool.one<Note>(sql`SELECT * FROM notes WHERE id = ${id}`);
 
 export const getNotes = async (userId: string) =>
-  await pool.many<Note>(sql`SELECT * FROM notes WHERE user_id = ${userId} ORDER BY date_created DESC`);
+  await pool.any<Note>(sql`SELECT * FROM notes WHERE user_id = ${userId} ORDER BY date_created DESC`);
 
 export const createNote = async (userId: string) => {
   const id = uuidv4();
