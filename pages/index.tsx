@@ -1,22 +1,36 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import React from 'react';
+import useSWR, { useSWRConfig } from 'swr';
 import { ApiNote } from '../lib/apiModels';
 import { fetcher } from '../lib/fetcher';
-import styles from '../styles/Home.module.css'
-import useSWR from 'swr';
-import Link from 'next/link';
+import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
+  const { mutate } = useSWRConfig();
   const { data } = useSWR<ApiNote[]>('/api/notes', fetcher);
   const router = useRouter();
 
+  // Sends a request to make a new and redirects to new note page
   const createNote = () => {
     fetch('/api/notes', { method: 'PUT' })
       .then(response => response.json())
       .then((data) => router.push(`/notes/${data.id}`))
       .catch(error => console.log(error));
   }
+
+  // Deletes note and mutates cache
+  const deleteNote = (event: React.MouseEvent, id: string) => {
+    event.stopPropagation();
+    console.log(id);
+    return mutate('/api/notes', async (notes: ApiNote[]) => {
+      await fetch(`/api/notes/${id}`, { method: 'DELETE' });
+      return notes.filter(note => note.id !== 'id');
+    })
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -36,14 +50,10 @@ const Home: NextPage = () => {
         <ul className={styles.noteList}>
           {data?.map(x => (
             <li key={x.id}>
-              <Link href={`/notes/${x.id}`}>
-                <a>
-                  {x.title}
-                  <button>
-                    <img src="/delete_black_48dp.svg" alt="Delete note" className={styles.deleteButton} />
-                  </button>
-                </a>
-              </Link>
+              <Link href={`/notes/${x.id}`}><a>{x.title}</a></Link>
+              <button onClick={event => deleteNote(event, x.id)}>
+                <img src="/delete_black_48dp.svg" alt="Delete note" className={styles.deleteButton} />
+              </button>
             </li>
           ))}
         </ul>

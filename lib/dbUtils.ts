@@ -26,3 +26,6 @@ export const createNote = async (userId: string) => {
 
 export const updateNote = async (note: Note) =>
   await pool.query(sql`UPDATE notes SET title = ${note.title}, content = ${note.content} WHERE id = ${note.id}`);
+
+export const deleteNote = async (noteId: string) =>
+  await pool.query(sql`DELETE FROM notes WHERE id = ${noteId}`);

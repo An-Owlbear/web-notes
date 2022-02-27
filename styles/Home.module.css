@@ -47,18 +47,23 @@
 
 .noteList > li {
   border-bottom: 1px solid var(--grey4);
-  transition: background-color ease 0.2s;
-}
-
-.noteList > li:hover {
-  background-color: var(--grey1);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .noteList a {
   padding-left: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+}
+
+.noteList a::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: ' ';
 }
 
 .noteList button {
@@ -67,6 +72,9 @@
   background: none;
   border: 2px solid var(--grey4);
   border-radius: 5px;
+  transition: background-color ease 0.2s;
+  position: relative;
+  z-index: 2;
 }
 
 .noteList button:hover {

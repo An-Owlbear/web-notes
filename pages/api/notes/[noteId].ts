@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next';
 import { ApiError, ApiNote } from '../../../lib/apiModels';
-import { getNote, Note, updateNote } from '../../../lib/dbUtils';
+import { deleteNote, getNote, Note, updateNote } from '../../../lib/dbUtils';
 import { SessionRequest, withSession } from '../../../lib/ironSession';
 import { Responses } from '../../../lib/Responses';
 
@@ -26,6 +26,8 @@ async function handler(req: SessionRequest, res: NextApiResponse<ApiNote | ApiEr
 
   if (req.method === 'GET') return await getHandler(req, res, note);
   else if (req.method === 'PATCH') return await patchHandler(req as PatchRequest, res, note);
+  else if (req.method === 'DELETE') return await deleteHandler(req, res, note);
+  else res.status(400).end();
 }
 
 // Returns note information
@@ -47,5 +49,11 @@ async function patchHandler(req: PatchRequest, res: NextApiResponse, note: Note)
   }
 
   await updateNote(updateNoteValues);
+  res.status(200).end();
+}
+
+// Deletes the note
+async function deleteHandler(req: SessionRequest, res: NextApiResponse, note: Note) {
+  await deleteNote(note.id);
   res.status(200).end();
 }
