@@ -1,15 +1,17 @@
 import Cookies from 'js-cookie';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
+import SessionContext from './SessionContext';
 
 interface SessionCheckProps {
   children: JSX.Element
 }
 
 const SessionCheck = (props: SessionCheckProps) => {
-  const [session, setSession] = useState<string | undefined>(undefined);
+  const { session, setSession } = useContext(SessionContext);
 
   useEffect(() => {
-    if (Cookies.get('sessionInfo')) setSession(Cookies.get('sessionInfo'));
+    const sessionCookie = Cookies.get('sessionInfo');
+    if (sessionCookie) setSession(sessionCookie);
     else window.location.href = "/api/login";
   }, []);
 
