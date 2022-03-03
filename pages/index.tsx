@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import useSWR, { useSWRConfig } from 'swr';
+import NoteListItem from '../components/index/NoteListItem';
 import { ApiNote } from '../lib/apiModels';
 import { fetcher } from '../lib/fetcher';
 import styles from '../styles/Home.module.css';
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
     return mutate('/api/notes', async (notes: ApiNote[]) => {
       await fetch(`/api/notes/${id}`, { method: 'DELETE' });
       return notes.filter(note => note.id !== 'id');
-    })
+    });
   }
 
   return (
@@ -49,12 +49,7 @@ const Home: NextPage = () => {
         </div>
         <ul className={styles.noteList}>
           {data?.map(x => (
-            <li key={x.id}>
-              <Link href={`/notes/${x.id}`}><a>{x.title}</a></Link>
-              <button onClick={event => deleteNote(event, x.id)}>
-                <img src="/delete_black_48dp.svg" alt="Delete note" className={styles.deleteButton} />
-              </button>
-            </li>
+            <NoteListItem key={x.id} id={x.id} title={x.title} onDelete={deleteNote} />
           ))}
         </ul>
       </main>
