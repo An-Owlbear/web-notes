@@ -5,7 +5,7 @@ import { ChangeEvent, useState } from 'react';
 import useSWR from 'swr';
 import { ApiNote } from '../../lib/apiModels';
 import { fetcher } from '../../lib/fetcher';
-import styles from '../../styles/Note.module.css'
+import styles from '../../styles/[noteId].module.css'
 import NotFoundPage from '../404';
 import { RequestError } from '../../lib/fetcher';
 

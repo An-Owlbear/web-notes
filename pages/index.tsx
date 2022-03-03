@@ -6,7 +6,7 @@ import useSWR, { useSWRConfig } from 'swr';
 import NoteListItem from '../components/index/NoteListItem';
 import { ApiNote } from '../lib/apiModels';
 import { fetcher } from '../lib/fetcher';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/index.module.css';
 
 const Home: NextPage = () => {
   const { mutate } = useSWRConfig();
