@@ -20,7 +20,8 @@ async function handler(req: SessionRequest, res: NextApiResponse<ApiNote | ApiEr
   }
 
   const note = await getNote(req.query.noteId as string);
-  if (note.user_id != req.session.userId) {
+  if (!note) return res.status(404).send({ error: 'Note not found' });
+  else if (note.user_id != req.session.userId) {
     return res.status(403).send({ error: Responses.Forbidden });
   }
 

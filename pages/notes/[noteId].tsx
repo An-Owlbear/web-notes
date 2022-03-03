@@ -6,13 +6,15 @@ import useSWR from 'swr';
 import { ApiNote } from '../../lib/apiModels';
 import { fetcher } from '../../lib/fetcher';
 import styles from '../../styles/Note.module.css'
+import NotFoundPage from '../404';
+import { RequestError } from '../../lib/fetcher';
 
 const Note: NextPage = () => {
   const router = useRouter();
   const { noteId } = router.query;
 
   // Fetches data, and updates state unless it has been modified by the user
-  const { data: note } = useSWR<ApiNote>(noteId ? `/api/notes/${noteId}` : null, fetcher, {
+  const { data: note, error } = useSWR<ApiNote, RequestError>(noteId ? `/api/notes/${noteId}` : null, fetcher, {
     onSuccess: (note) => {
       if (!values.changed && note) setValues({ ...values, title: note.title, content: note.content });
     }
@@ -39,6 +41,7 @@ const Note: NextPage = () => {
     setValues({ ...values, changed: false });
   }
 
+  if (error?.status === 404) return <NotFoundPage />
   if (!note) return null;
   return (
     <div className={styles.container}>
